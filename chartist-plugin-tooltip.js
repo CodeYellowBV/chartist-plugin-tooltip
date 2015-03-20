@@ -23,7 +23,7 @@
         'use strict';
 
         var defaultOptions = {
-            currency: '', // Prepend value with something (like: € or $)
+            valueTransform: Chartist.noop,
             seriesName: true // Show name of series in tooltip.
         };
 
@@ -63,10 +63,7 @@
 
                     var value = $point.attr('ct:value');
 
-                    if (options.currency) {
-                        value = options.currency + value.replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
-                    }
-                    tooltipText += value;
+                    tooltipText += options.valueTransform(value);
 
                     $toolTip.html(tooltipText).show();
                 });

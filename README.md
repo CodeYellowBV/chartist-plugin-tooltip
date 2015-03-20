@@ -50,17 +50,19 @@ In an example chart:
 ```js
 new Chartist.Bar('.ct-chart', data, {
         stackBars: true,
-    },
-    plugins: [
-        Chartist.plugins.tooltip({
-            currency: '€'
-        })
-    ]
+        plugins: [
+            Chartist.plugins.tooltip({
+                valueTransform: function () {
+                    return (value / 1000) + 'k';
+                }
+            })
+        ]
+    }
 });
 ```
 
 | __Option__ | __Description__ | __Type__ | __Default__ |
 | ---        | ---             | ---      | ---         |
-| `currency` | Prepend the value with this. | `string` | `null` |
+| `valueTransform` | Format value with callback. | `string` | `null` |
 | `seriesName` | Show the name of the series in the tooltip. | `bool` | `true` |
 
