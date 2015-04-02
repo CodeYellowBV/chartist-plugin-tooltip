@@ -1,16 +1,16 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['chartist', 'jquery'], function () {
-            return (root.returnExportsGlobal = factory());
+        define(['chartist', 'jquery'], function (chartist, jquery) {
+            return (root.returnExportsGlobal = factory(chartist, jquery));
         });
     } else if (typeof exports === 'object') {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like enviroments that support module.exports,
         // like Node.
-        module.exports = factory();
+        module.exports = factory(require('chartist'), require('jquery'));
     } else {
-        root['Chartist.plugins.tooltip'] = factory();
+        root['Chartist.plugins.tooltip'] = factory(root.chartist, root.jquery);
     }
 }(this, function () {
 
@@ -19,7 +19,7 @@
      * https://github.com/Globegitter/chartist-plugin-tooltip.
      *
      */
-    (function (window, document, Chartist, $) {
+    (function (Chartist, $) {
         'use strict';
 
         var defaultOptions = {
@@ -83,7 +83,7 @@
 
         };
 
-    }(window, document, Chartist, $));
+    }(Chartist, $));
 
     return Chartist.plugins.tooltip;
 
