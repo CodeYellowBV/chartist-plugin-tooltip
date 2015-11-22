@@ -61,7 +61,7 @@
                         tooltipText += $point.attr('ct:meta') + '<br>';
                     }
 
-                    var value = $point.attr('ct:value');
+                    var value = $point.attr('ct:value') || '0';
 
                     tooltipText += options.valueTransform(value);
 
