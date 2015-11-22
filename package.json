@@ -1,11 +1,11 @@
 {
-    "name": "chartist-plugin-tooltip",
-    "version": "0.0.7",
-    "author": "Kees Kluskens <kees@codeyellow.nl>",
-    "description": "Tooltip plugin for Chartist.js.",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/CodeYellowBV/chartist-plugin-tooltip"
-    },
-    "main": "chartist-plugin-tooltip.js"
+  "name": "chartist-plugin-tooltip",
+  "version": "0.0.8",
+  "author": "Kees Kluskens <kees@codeyellow.nl>",
+  "description": "Tooltip plugin for Chartist.js.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodeYellowBV/chartist-plugin-tooltip"
+  },
+  "main": "chartist-plugin-tooltip.js"
 }
