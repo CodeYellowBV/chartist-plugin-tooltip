@@ -3,6 +3,7 @@
   "version": "0.0.8",
   "author": "Kees Kluskens <kees@codeyellow.nl>",
   "description": "Tooltip plugin for Chartist.js.",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/CodeYellowBV/chartist-plugin-tooltip"
