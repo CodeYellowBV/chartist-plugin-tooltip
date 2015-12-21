@@ -39,7 +39,7 @@
                 if (chart instanceof Chartist.Bar) {
                     tooltipSelector = '.ct-bar';
                 } else if (chart instanceof Chartist.Pie) {
-                    tooltipSelector = '.ct-slice';
+                    tooltipSelector = '[class^=ct-slice]';
                 }
 
                 var $chart = $(chart.container),
