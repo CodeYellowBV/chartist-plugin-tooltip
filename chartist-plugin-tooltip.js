@@ -50,6 +50,9 @@
 
                 $chart.on('mouseenter', tooltipSelector, function() {
                     var $point = $(this),
+                        parent = $point.parent(),
+                        // Check parent index to determine what label to apply
+                        parentIndex = parent.index(),
                         seriesName = $point.parent().attr('ct:series-name'),
                         tooltipText = '';
 
@@ -61,9 +64,12 @@
                         tooltipText += $point.attr('ct:meta') + '<br>';
                     }
 
-                    var value = $point.attr('ct:value') || '0';
+                    var tooltipData = {
+                        value: $point.attr('ct:value') || '0',
+                        label: options.labels[parentIndex]
+                    }
 
-                    tooltipText += options.valueTransform(value);
+                    tooltipText += options.valueTransform(tooltipData);
 
                     $toolTip.html(tooltipText).show();
                 });
