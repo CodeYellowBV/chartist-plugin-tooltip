@@ -66,3 +66,7 @@ new Chartist.Bar('.ct-chart', data, {
 | `valueTransform` | Format value with callback. Allows html. | `string` | `null` |
 | `seriesName` | Show the name of the series in the tooltip. | `bool` | `true` |
 
+## Changelog
+
+# 0.0.11
+- Fix module loading.

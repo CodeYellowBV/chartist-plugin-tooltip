@@ -10,7 +10,7 @@
         // like Node.
         module.exports = factory(require('chartist'), require('jquery'));
     } else {
-        root['Chartist.plugins.tooltip'] = factory(root.Chartist, root.jQuery);
+        root['Chartist.plugins.tooltip'] = factory(root.chartist, root.jquery);
     }
 }(this, function (Chartist, $) {
 
@@ -81,6 +81,7 @@
         };
 
     };
+
     return Chartist.plugins.tooltip;
 
 }));
