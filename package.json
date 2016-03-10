@@ -1,6 +1,6 @@
 {
   "name": "chartist-plugin-tooltip",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "author": "Kees Kluskens <kees@codeyellow.nl>",
   "description": "Tooltip plugin for Chartist.js.",
   "license": "ISC",
