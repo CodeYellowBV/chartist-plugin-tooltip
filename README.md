@@ -1,5 +1,7 @@
 # chartist-plugin-tooltip
 
+# DEPRECATED, use [Globegitter/chartist-plugin-tooltip](https://github.com/Globegitter/chartist-plugin-tooltip)
+
 Implements a tooltip for [Chartist](https://github.com/gionkunz/chartist-js) charts.
 
 ## Install
