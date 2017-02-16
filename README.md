@@ -70,5 +70,8 @@ new Chartist.Bar('.ct-chart', data, {
 
 ## Changelog
 
+# 0.0.12
+- Update []() to version 0.0.12
+- Chartist dev dependency to ^0.9.8
 # 0.0.11
 - Fix module loading.
