@@ -1,16 +1,16 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['chartist', 'jquery'], function (chartist, jquery) {
-            return (root.returnExportsGlobal = factory(chartist, jquery));
+        define(['chartist'], function (chartist, jquery) {
+            return (root.returnExportsGlobal = factory(chartist));
         });
     } else if (typeof exports === 'object') {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like enviroments that support module.exports,
         // like Node.
-        module.exports = factory(require('chartist'), require('jquery'));
+        module.exports = factory(require('chartist'));
     } else {
-        root['Chartist.plugins.tooltip'] = factory(root.chartist, root.jquery);
+        root['Chartist.plugins.tooltip'] = factory(root.chartist);
     }
 }(this, function (Chartist, $) {
 
@@ -30,55 +30,34 @@
 
     Chartist.plugins.tooltip = function (options) {
 
-        options = Chartist.extend({}, defaultOptions, options);
+      options = Chartist.extend({}, defaultOptions, options);
 
-        return function tooltip(chart) {
+      return function tooltip(chart) {
+        var chart = chart.container;
+        chart.innerHTML = '<div class="ct-tooltip"></div>';
+        var toolTip = document.getElementsByClassName('ct-tooltip')[0];
 
-            var tooltipSelector = '.ct-point';
-            if (chart instanceof Chartist.Bar) {
-                tooltipSelector = '.ct-bar';
-            } else if (chart instanceof Chartist.Pie) {
-                tooltipSelector = '[class^=ct-slice]';
-            }
+        toolTip.style.display = 'none';
+        toolTip.style.position = 'absolute';
 
-            var $chart = $(chart.container),
-                $toolTip = $chart
-                .append('<div class="ct-tooltip"></div>')
-                .find('.ct-tooltip')
-                .hide();
+        chart.addEventListener('mouseover', e => {
+          toolTip.innerHTML = e.target.getAttribute('ct:value');
+          !toolTip.innerHTML ? toolTip.style.display = 'none' : toolTip.style.display = 'block';
+          toolTip.style.left = e.layerX - toolTip.clientWidth / 2  + 'px';
+          toolTip.style.top =  e.layerY - toolTip.clientHeight - 15 + 'px';
+        }, false);
 
-            $chart.on('mouseenter', tooltipSelector, function() {
-                var $point = $(this),
-                    seriesName = $point.parent().attr('ct:series-name'),
-                    tooltipText = '';
+        chart.addEventListener('mouseleave',  e => {
+          toolTip.style.display = 'none';
+          toolTip.innerHTML = '';
+        }, false);
 
-                if (options.seriesName && seriesName) {
-                    tooltipText += seriesName + '<br>';
-                }
+        chart.addEventListener('mousemove',  e => {
+          toolTip.style.left = e.layerX - toolTip.clientWidth / 2  + 'px';
+          toolTip.style.top =  e.layerY - toolTip.clientHeight - 15 + 'px';
+        }, false);
 
-                if ($point.attr('ct:meta')) {
-                    tooltipText += $point.attr('ct:meta') + '<br>';
-                }
-
-                var value = $point.attr('ct:value') || '0';
-
-                tooltipText += options.valueTransform(value);
-
-                $toolTip.html(tooltipText).show();
-            });
-
-            $chart.on('mouseleave', tooltipSelector, function() {
-                $toolTip.hide();
-            });
-
-            $chart.on('mousemove', function(event) {
-                $toolTip.css({
-                    left: (event.offsetX || event.originalEvent.layerX) - $toolTip.width() / 2 - 10,
-                    top: (event.offsetY || event.originalEvent.layerY) - $toolTip.height() - 40
-                });
-            });
-
-        };
+      }
 
     };
 
